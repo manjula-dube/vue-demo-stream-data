@@ -1,43 +1,45 @@
 <template>
-  <form
-    @submit.prevent="handleSubmit"
-    class="form-stock-market">
-    <md-field>
-      <label>ISIN</label>
-      <md-input
-        id="isin"
-        name="isin"
-        v-model="isin"
-      ></md-input>
-    </md-field>
-    <md-button
-      class="md-raised md-primary btn-stock"
-      type="submit"
-      >FIND STOCK DATA</md-button>
-  </form>
+<md-card-content class="card-content">
+  <div>
+    <div class="title">
+      <div class="md-title">Market Stock data</div>
+      <md-divider></md-divider>
+      <md-divider></md-divider>
+    </div>
+    <form @submit.prevent="handleSubmit">
+      <md-field>
+        <label>ISIN Number</label>
+        <md-input id="isin" name="isin" v-model="isin" autofocus></md-input>
+      </md-field>
+      <md-button class="md-raised md-primary btn-stock" type="submit"
+        >FIND STOCK DATA</md-button
+      >
+    </form>
+  </div>
+  </md-card-content>
 </template>
 
 <script>
-import { Actions } from '../store'
+import { Actions } from "../store";
 
 export default {
-
-  name: 'StockFields',
+  name: "StockFields",
   data() {
+    // default isin 
     return {
-      isin: '',
-    }
+      isin: "",
+    };
   },
 
   methods: {
     handleSubmit() {
       if (this.isin) {
-        this.$store.dispatch(Actions.FIND_STOCK, this.isin)
-        this.isin = ''
+        this.$store.dispatch(Actions.FIND_STOCK, this.isin);
+        this.isin = "";
       }
     },
   },
-}
+};
 </script>
 
 <style scoped>
@@ -46,5 +48,9 @@ export default {
 }
 .btn-stock {
   width: 100%;
+}
+.card-content {
+  background: #FEF8DD;
+  padding : 40px;
 }
 </style>
